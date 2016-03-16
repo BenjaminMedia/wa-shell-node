@@ -1,0 +1,3 @@
+5183,0,da-DK,http://aktivtraening.dk/traening/traeningsraad/faa-et-mere-aktivt-liv-5-skridt-til-succes-0,80
+5187,0,nb-NO,http://aktivtrening.com/trening/treningstips/et-mer-aktivt-liv-5-skritt-til-suksess,80
+5189,0,sv-SE,http://aktivtraning.se/traning/traningsrad/ska%1Cffa-dig-ett-aktivare-liv-5-steg-for-att-lyckas,80
