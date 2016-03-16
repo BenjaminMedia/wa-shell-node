@@ -26,7 +26,7 @@ var scan = {
                 //var tax = body.contents[a].taxonomy[b];
                 if(body.contents[a].taxonomy[t].vid == "1"){ 
                     console.log("Category found: " + body.contents[a].taxonomy[t].name); 
-                    found = found + 1;
+                    found = found + 1; 
                 }
                 
             }
