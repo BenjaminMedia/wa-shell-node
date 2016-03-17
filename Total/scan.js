@@ -3,8 +3,8 @@
 var request = require("request");
 var fs = require('fs');
 var drupalsites = JSON.parse(require('fs').readFileSync('drupalsites.json', 'utf8'));
-var startPage = (process.argv[2]) ? process.argv[2] : 1;
-var site = (process.argv[3]) ? parseInt(process.argv[3]) : 0;
+var startPage = 1;
+var site = 0;
 
 
 var scan = {
@@ -14,26 +14,23 @@ var scan = {
         errors: 0
     },
 
-    init: function(){//TODO
-        scan.APIrequest(drupalsites.sites[scan.tmp.site].api.type[a],startPage,scan.worker);
+    init: function(contenttype){//TODO
+        scan.APIrequest(drupalsites.sites[scan.tmp.site].api,contenttype,startPage,scan.worker);
     },
 
-    worker: function(body, page){//TODO
+    worker: function(body, page, contenttype){//TODO
         
         //Iterate through articles
         for(var a = 0; a < body.contents.length; a++){
             var found = 0;
             //Iterate through taxonomy
             for(t in body.contents[a].taxonomy){
-                //console.log(t);
-                //var tax = body.contents[a].taxonomy[b];
                 if(body.contents[a].taxonomy[t].vid == "1"){ 
                     console.log("Category found: " + body.contents[a].taxonomy[t].name); 
                     found = found + 1;
                 }
             }
             if(found == 0){
-                
                 //log issue to file
                 fs.appendFile(
                     'errors\\' +drupalsites.sites[scan.tmp.site].shortname + '.txt', 
@@ -49,7 +46,6 @@ var scan = {
                         }; 
                     }
                 );
-
                 console.log("WARNING - NO CATEGORY FOUND ON THIS TYPE NODEID: " + body.contents[a].nid);
                 scan.tmp.errors++;
                 console.log("Total errors found: " + scan.tmp.errors);
@@ -58,14 +54,13 @@ var scan = {
         //If last page is not reached yet
         if(page < scan.tmp.pages){ 
             console.log(" ");
-            scan.APIrequest(drupalsites.sites[scan.tmp.site].type[a],page++,scan.worker);
+            scan.APIrequest(drupalsites.sites[scan.tmp.site].api,contenttype,page++,scan.worker);
         } else {
             //continue to next site
-            
             if(site <= drupalsites.sites.length){
                 scan.tmp.pages = 0;
                 scan.tmp.site = parseInt(scan.tmp.site) + 1;
-                scan.APIrequest(drupalsites.sites[scan.tmp.site].api.type[a],scan.tmp.pages,scan.worker);
+                scan.APIrequest(drupalsites.sites[scan.tmp.site].api, contenttype, scan.tmp.pages, scan.worker);
             }
         }
     },
@@ -78,7 +73,7 @@ var scan = {
         try{
             if (sname.indexOf(shortname) <= -1) throw error;
             if (sname.indexOf(shortname) > -1) return true;
-            else return false;
+            //else return false;
         }
         catch(err){
             console.log("Error: ", err);
@@ -86,24 +81,35 @@ var scan = {
     },
 
     GetAllSites: function(){
-        var sname = drupalsites
+        return drupalsites
                     .sites
                     .map(function(sitelist){ return sitelist['shortname']; });
-        return sname;
     },
 
-    ReturnTypeID: function(typeArray,type){ //TODO
-        //inArray der tjekker om en given content type eksisterer i et array
+    ReturnTypeID: function(site,type){ 
+        var site = site.toUpperCase();
+        var siteId = scan.GetAllSites()
+                    .indexOf(site);
+        var typeList = drupalsites.sites[siteId].types;
+        var id = typeList.indexOf(type);
+        var error = type + " does not exist in " + site;
 
-        //Hvis denne eksisterer så returner id i array
-        //returner false hvis ikke findes
+        try{
+            //if (id <= -1) return false;
+            if (id <= -1) throw error;
+            if (id > -1) return id;
+        }
+        catch(err){
+            console.log(err);
+            return false;
+        }
     },
 
-    APIrequest: function(url, page, callback){ //TODO
+    APIrequest: function(url, type, page, callback){ //TODO
         
         console.log('----------- Scanning ' + drupalsites.sites[scan.tmp.site].shortname + ', page: ' + page + ' / ' + scan.tmp.pages + ' -----------');
         request({
-            url: url + ".json?page="+page,
+            url: url + type + ".json?page="+page,
             json: true
         }, function (error, response, body) {
             if (!error && response.statusCode === 200) {
@@ -114,9 +120,9 @@ var scan = {
             } else {
                 if(response.statusCode === 503){
                     console.log('server timeout, retrying in 1 minute');
-                    setTimeout(function(){scan.APIrequest(url,page,callback)},60*1000);
+                    setTimeout(function(){scan.APIrequest(url,type,page,callback)},60*1000);
                 } else {
-                    console.log(error,response,body);
+                    console.log(error);
                 }
             }
         })
@@ -152,17 +158,32 @@ else if(process.argv[2] == "list" && process.argv[3]){
 }else if (process.argv[2] == "tax" && !process.argv[3]) {
     console.log("All sites and their content types: 'tax all' \n" +
                 "All content types for a site: e.g. 'tax NAT' \n");
-}else if (process.argv[2] == "tax" && process.argv[3]) {
+}else if (process.argv[2] == "tax" && process.argv[3] && !process.argv[4]) {
     var arg = process.argv[3];
     //All the sites
-    if (arg == "all")
-    console.log("Fetching taxonomy for all sites and their content types.");
+    if (arg == "all"){
+    console.log("Fetching taxonomy for all "+ scan.GetAllSites().length + " sites and their content types.");
+    console.log(drupalsites.sites[0].types.length);
+    
+        for (var siteid = 0; siteid < scan.GetAllSites().length; siteid++){
+            console.log(drupalsites.sites[siteid].shortname);
+            for (var typeid = 0; typeid < drupalsites.sites[siteid].types.length; typeid++){
+                console.log(drupalsites.sites[siteid].types[typeid]);
+                scan.init(drupalsites.sites[siteid].types[typeid]);
+            }
+        }
+    }
     //Specific site
     else if (scan.GetAllSites().indexOf(arg.toUpperCase()) > -1){
         console.log("Fetching taxonomy for " + arg.toUpperCase() + ".");
     }
     else{
         console.log("Invalid argument. Type 'tax' without other arguments to get a list of possible commands.");
+    }
+}else if (process.argv[2] == "tax" && process.argv[3] && process.argv[4]){
+    //Specific site and type
+    if (scan.ReturnTypeID(process.argv[3], process.argv[4])) {
+        console.log("Fetching taxonomy for site: " + process.argv[3].toUpperCase() + ", type: " + process.argv[4]);
     }
 }
 else {
