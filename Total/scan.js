@@ -17,7 +17,7 @@ var scan = {
 
 
     init: function(contenttype){//TODO
-        scan.APIrequest(drupalsites.sites[scan.tmp.site].api,contenttype,startPage,scan.worker);
+        scan.APIrequest(drupalsites.sites[scan.tmp.site].api, contenttype, startPage, scan.worker);
     },
 
     worker: function(body, page, contenttype){//TODO
@@ -63,7 +63,7 @@ var scan = {
         if(page < scan.tmp.pages){ 
             console.log(" ");
 
-            scan.APIrequest(drupalsites.sites[scan.tmp.site].api,contenttype,page++,scan.worker);
+            scan.APIrequest(drupalsites.sites[scan.tmp.site].api, contenttype, page++, scan.worker);
         } else {
             //continue to next site
             if(site <= drupalsites.sites.length){
@@ -135,7 +135,7 @@ var scan = {
                 if(response.statusCode === 503){
                     console.log('server timeout, retrying in 1 minute');
 
-                    setTimeout(function(){scan.APIrequest(url,type,page,callback)},60*1000);
+                    setTimeout(function(){scan.APIrequest(url, type, page, callback)}, 60*1000);
                 } else {
                     console.log(error);
 
