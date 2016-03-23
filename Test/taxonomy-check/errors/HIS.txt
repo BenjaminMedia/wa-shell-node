@@ -1,9 +1,0 @@
-2254,0,fi-FI,http://old.historianet.fi/henkilot/keksijat/tietovisa-3-kysymysta-lentotukialuksista,1
-10261,0,fi-FI,http://old.historianet.fi/henkilot/keksijat/tietovisa-3-kysymysta-polloista,1
-25106,0,fi-FI,http://old.historianet.fi/henkilot/keksijat/tietovisa-3-kysymysta-keksijoista,1
-2254,0,fi-FI,http://old.historianet.fi/henkilot/keksijat/tietovisa-3-kysymysta-lentotukialuksista,2
-10261,0,fi-FI,http://old.historianet.fi/henkilot/keksijat/tietovisa-3-kysymysta-polloista,2
-25106,0,fi-FI,http://old.historianet.fi/henkilot/keksijat/tietovisa-3-kysymysta-keksijoista,2
-30113,0,sv-SE,http://old.varldenshistoria.se/node/30113,3
-30120,0,nb-NO,http://old.historienet.no/quiz-og-test/hva-vet-du-om-vikinger,3
-30127,0,fi-FI,http://old.historianet.fi/testit/testaa-tietosi-viikingit,4
