@@ -215,7 +215,7 @@ var scan = {
 	*/
 	getAvailableContentTypes: function(shortname){
 		//If site exist return array of content types, in machinename format. EX: ['bp_product','bp_type_test'..]
-		if(scan.doesSiteExist(site)){
+		if(scan.doesSiteExist(shortname)){
 			return drupalsites.sites[scan.getAvailableSites().indexOf(shortname)].types;
 			
 		//Write an error when the requested site was not found
