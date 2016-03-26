@@ -78,6 +78,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-download
-taxonomy-check/errors/*
+logs/*
 node_modules
+whitealbum/token.json
+whitealbum/cache/*
