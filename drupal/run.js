@@ -293,7 +293,7 @@ var scan = {
 	apiRequest: function(siteID,typeID,page,callback){		
 		
 		var apiUrl = drupalsites.sites[siteID].api + drupalsites.sites[siteID].types[typeID] + ".json?page="+page;
-		//console.log(apiUrl);
+		console.log(apiUrl);
         request({
             url: apiUrl,
             json: true
@@ -337,6 +337,8 @@ var scan = {
 			str = `Category found: ${obj.category}`;
 		} else if(obj.error && obj.errorMessage){
 			str = `Error: ${obj.error} - ${JSON.stringify(obj.errorMessage)}`;
+		} else {
+			str = obj;
 		}
 		console.log(str);
 	},
