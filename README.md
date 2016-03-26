@@ -11,7 +11,7 @@ For installation of required node modules, run
 
 You can add additional commands for the drupal api tool:
 
-	USAGE \drupal\run.js [OPTION1] [OPTION2]... arg1 arg2...
+	USAGE \drupal\node run.js [OPTION] ... arg1 arg2...
 	The following options are supported:                       
 		-l, --list                    Lists all available sites
 		-t, --types <ARG1>            List available content types for a specific site   
@@ -21,7 +21,9 @@ You can add additional commands for the drupal api tool:
 			<ARG2>: ALL for all content types, or specific machine name ex. ngm_article.
 			<ARG3>: API pagenumber to start from, ex. 30
 
-*Note: You need to have your IP adress whitelisted on each drupal site - otherwise you cannot access API.*
+If any missing taxonomy is found, it will be logged to a CSV file within a (new, if doesn't exist) folder named logs. There will be created one file for each content type and brand.
+
+*Note: You need to have your IP adress whitelisted on each drupal site (brandwise, not domain) - otherwise you cannot access API.*
 
 ---
 
