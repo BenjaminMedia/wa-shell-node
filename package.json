@@ -4,6 +4,7 @@
   "description": "Tools to make my life a little easier",
   "main": "whitealbum/shell.js",
   "dependencies": {
+    "open": "0.0.5",
     "request": "^2.69.0",
     "routes": "^2.1.0",
     "stdio": "^0.2.7"
