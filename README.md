@@ -33,6 +33,7 @@ If any missing taxonomy is found, it will be logged to a CSV file within a (new,
 	node shell.js
 	
 When you see the server is runnig from console - simply visit your browser on http://127.0.0.1/ and click a site you want to test.
+A browser window should open, making it easy for you to continue.
 
 *Note: You need a file in the whitealbum folder named token.json.*
 

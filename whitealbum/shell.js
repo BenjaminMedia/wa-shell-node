@@ -5,7 +5,8 @@ var request = 	require("request"),		//Used for http requests
 	fs = 		require('fs'),			//Used for filesystem; ex. reading / writing files
 	http = 		require('http'),		//Used for starting a webserver
 	Router = 	require('routes'),		//Used for managing routes on the server
-	url = 		require('url');
+	url = 		require('url'),			//Used for handling routes
+	open = require('open');				//Used for opening a browser, when the script is executed
 
 var router = 	new Router();
 
@@ -57,10 +58,14 @@ var t = {
 			var match = router.match(path);
 			match.fn(req, res, match);
 		}).listen({
-			/*host: ip,*/
+			host: ip,
 			port: port
 		});
 		console.log(`Server running on http://${ip}:${port}/`);
+		
+		
+		open('http://' + ip + ':' + port + '/');
+
 
 	},
 	checkShell: function(req, res, next){
