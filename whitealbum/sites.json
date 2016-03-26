@@ -1,5 +1,4 @@
 {
-	"googleDocument": "https://docs.google.com/spreadsheets/d/1xeHb5W9-ZXlsJ7ebQIXCMN_96ECFjfjjcOqwXusOFlA/edit#gid=1370255578",
 	"endpoints": ["external_headers", "categories", "tags","oauth/token/info","/oauth/token","users","users/current"],
 	"sites": [
 		{
