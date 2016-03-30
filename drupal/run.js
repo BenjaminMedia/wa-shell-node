@@ -220,7 +220,7 @@ var scan = {
 			
 		//Write an error when the requested site was not found
 		} else {
-			scan.print({error: `${site} was not found`, errorMessage: 'See --list for available sites'});
+			scan.print({error: `${shortname} was not found`, errorMessage: 'See --list for available sites'});
 		}
 	},
 	
