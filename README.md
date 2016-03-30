@@ -44,3 +44,4 @@ It should contain a single value
 	}
 
 It should contain the Base64 encryption of the combined token and secret key - this is required in order to use the shell test script.
+It can be found by: node -e "require('crypto').randomBytes(48, function(ex, buf) { console.log(buf.toString('hex')) });".
