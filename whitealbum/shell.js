@@ -42,10 +42,13 @@ var t = {
 		}
 		return false;
 	},
+	withBanners: function(bannerID){
+		return bannerID = true;
+	},
 	launchServer: function(siteID,body){
 		
 		router.addRoute('/emediate/EAS_fif.html', t.EAS_fif); 	//emulate eas file, so banners works
-		router.addRoute('/shell/:site/:lang', t.checkShell);	//accept shortcode and country
+		router.addRoute('/shell/:site/:lang/:banner', t.checkShell);	//accept shortcode and country + 
 		router.addRoute('/*', t.welcome);						//all other urls display default list
 		
 		var port = 80;
@@ -66,12 +69,15 @@ var t = {
 	checkShell: function(req, res, next){
 		
 		var siteRequest = router.match(url.parse(req.url).pathname);
-		
+
+		console.log("Params:" + JSON.stringify(siteRequest));
+
 		if(t.doesSiteAndLanguageExist(siteRequest.params.site,siteRequest.params.lang)){
 			
 			var siteID = t.getSiteID(siteRequest.params.site);
 			var langID = t.getLangID(siteRequest.params.site,siteRequest.params.lang);
-			t.apiRequest(siteID,langID,res,t.displayShell)
+			var banner = siteRequest.params.banner;
+			t.apiRequest(siteID,langID,res,banner,t.displayShell)
 			
 		} else {
 			t.welcome(req,res,next);
@@ -103,12 +109,21 @@ var t = {
 		res.end(html);
 	},
 	welcome: function(req, res, next){
-		var html = `<h1>White Album sites with shell enabled</h1><ul>`;		
+		var html = `<h1>White Album sites with shell enabled</h1><br><h2>With banners:</h2><ul>`;		
 		for(var s = 0; s < whitealbum.sites.length; s++){
 			
 			html += `<li>${whitealbum.sites[s].name} -`;
 			for(var l = 0; l < whitealbum.sites[s].languages.length; l++){
-				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}">${whitealbum.sites[s].languages[l]}</a>&nbsp;`
+				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/false">${whitealbum.sites[s].languages[l]}</a>&nbsp;`
+			}
+			html += `</li>`
+		}
+		html += `</ul><br><h2>Without banners:</h2>`
+		for(var s = 0; s < whitealbum.sites.length; s++){
+			
+			html += `<li>${whitealbum.sites[s].name} -`;
+			for(var l = 0; l < whitealbum.sites[s].languages.length; l++){
+				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/true">${whitealbum.sites[s].languages[l]}</a>&nbsp;`
 			}
 			html += `</li>`
 		}
@@ -145,19 +160,21 @@ var t = {
 			}
 		}
 	},
-	apiRequest: function(siteID,languageID,res,callback){	
-		
-		var apiUrl = 'http://' + whitealbum.sites[siteID].domains[languageID] + '/api/v2/external_headers';
-		console.log(apiUrl);
-		
-        request({
+	apiRequest: function(siteID,languageID,res,banner,callback){	
+		var apiUrl = 'http://' + whitealbum.sites[siteID].domains[languageID] + '/api/v2/external_headers'; 
+			console.log(apiUrl);
+
+		var options = {
             url: apiUrl,
 			method: 'GET',
-			headers: { "Authorization": "Basic " + token.basic },
-			qs: { "without_banners": false },
+			headers: { "Authorization": token.basic },
+			qs: { "without_banners": banner },
             json: true
-        }, function (error, response, body) {
-            if (!error && response.statusCode === 200) {
+        };
+		
+		console.log(JSON.stringify(options));
+        request(options, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
 
                 callback(siteID,languageID,res,body);
 				
@@ -166,7 +183,7 @@ var t = {
 				//If timeout, retry in one minute, otherwise print out the error message
                 if(response.statusCode === 503){
 					console.log('Server timeout, retrying in 1 minute');
-                    setTimeout(function(){t.apiRequest(siteID,endpoint,page,callback)},60*1000);
+                    setTimeout(function(){t.apiRequest(siteID,endpoint,page,banner,callback)},60*1000);
                 } else {
 					console.log(`HTTP response status code: ${response.statusCode}`)
                 }
