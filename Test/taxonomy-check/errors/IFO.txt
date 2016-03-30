@@ -1,3 +1,0 @@
-784394,1,fi-FI,http://old.kuntoplus.fi/hyvinvointi/oletko-introvertti-vai-ekstrovertti,11
-882859,0,da-DK,http://old.iform.dk/test/test-test,12
-954371,0,nb-NO,http://old.iform.nu/annonse-allevo/hvilken-slankekur-passer-for-deg,12
