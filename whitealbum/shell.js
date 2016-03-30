@@ -6,7 +6,7 @@ var request = 	require("request"),		//Used for http requests
 	http = 		require('http'),		//Used for starting a webserver
 	Router = 	require('routes'),		//Used for managing routes on the server
 	url = 		require('url'),			//Used for handling routes
-	open = require('open');				//Used for opening a browser, when the script is executed
+	open = 		require('open');		//Used for opening a browser, when the script is executed
 
 var router = 	new Router();
 
@@ -39,9 +39,7 @@ var t = {
 			if(whitealbum.sites[siteID].languages.indexOf(language.toUpperCase()) > -1){ 
 				return true; 
 			}
-			
 		}
-		
 		return false;
 	},
 	launchServer: function(siteID,body){
@@ -63,10 +61,7 @@ var t = {
 		});
 		console.log(`Server running on http://${ip}:${port}/`);
 		
-		
 		open('http://' + ip + ':' + port + '/');
-
-
 	},
 	checkShell: function(req, res, next){
 		
@@ -81,8 +76,6 @@ var t = {
 		} else {
 			t.welcome(req,res,next);
 		}
-		
-		
 	},
 	displayShell: function(siteID,languageID,res,ResponseJSON){
 		
@@ -151,7 +144,6 @@ var t = {
 				return whitealbum.sites[t.getSiteID(shortname.toUpperCase())].languages.indexOf(language.toUpperCase()); 
 			}
 		}
-		
 	},
 	apiRequest: function(siteID,languageID,res,callback){	
 		
