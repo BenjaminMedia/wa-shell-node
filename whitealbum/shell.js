@@ -42,9 +42,6 @@ var t = {
 		}
 		return false;
 	},
-	withBanners: function(bannerID){
-		return bannerID = true;
-	},
 	launchServer: function(siteID,body){
 		
 		router.addRoute('/emediate/EAS_fif.html', t.EAS_fif); 	//emulate eas file, so banners works

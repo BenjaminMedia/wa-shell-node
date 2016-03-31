@@ -54,15 +54,16 @@ var scan = {
 		}
 		
 		//If scan is set, launch the API scanning part
-		else if(commands.scan && scan.doesSiteExist(commands.scan[0].toUpperCase())){
+		else if(commands.scan || scan.doesSiteExist(commands.scan[0].toUpperCase())){
 			
-			
+
 			
 			//If first argument is set to all, set site to id 0, otherwise define specific site
 			if(commands.scan[0] == 'ALL'){
 				scan.tmp.site = 0;
 				scan.tmp.scanSites = 'ALL';
-			} else {
+			} 
+			else {
 				scan.tmp.scanSites = commands.scan[0];
 				scan.tmp.site = scan.getSiteID(commands.scan[0]);	
 			}
@@ -71,8 +72,16 @@ var scan = {
 			if(commands.scan[1].toUpperCase() == 'ALL'){
 				scan.tmp.type = 0;
 				scan.tmp.scanTypes = 'ALL';
-			} else {
+			} 
+			else {
 				scan.tmp.type = scan.getTypeID(scan.getSiteshortname(scan.tmp.site),commands.scan[1]);
+				
+				try{
+					if (scan.tmp.type == false) throw error;
+				}
+				catch(error){
+					return;
+				}
 				scan.tmp.scanTypes = scan.getContentTypeName(scan.tmp.type,scan.tmp.site);
 			}
 			
