@@ -5,14 +5,16 @@ var request = 	require("request"),		//Used for http requests
 	fs = 		require('fs'),			//Used for filesystem; ex. reading / writing files
 	http = 		require('http'),		//Used for starting a webserver
 	Router = 	require('routes'),		//Used for managing routes on the server
-	url = 		require('url'),			//Used for handling routes
-	open = 		require('open');		//Used for opening a browser, when the script is executed
+	url = 		require('url');			//Used for handling routes
+	//open = 		require('open');		//Used for opening a browser, when the script is executed
 
 var router = 	new Router();
 
 // Read the wa site settings file
 var whitealbum = JSON.parse(require('fs').readFileSync('sites.json', 'utf8'));
 var token = JSON.parse(require('fs').readFileSync('token.json', 'utf8'));
+//For Heroku:
+//var token = process.env.TOKEN;
 var demoHTML = require('fs').readFileSync('demo.html', 'utf8');
 
 /**
@@ -48,8 +50,8 @@ var t = {
 		router.addRoute('/shell/:site/:lang/:banner', t.checkShell);	//accept shortcode and country + 
 		router.addRoute('/*', t.welcome);						//all other urls display default list
 		
-		var port = 80;
-		var ip = '127.0.0.1' //Change to specific IP if you need to test on mobile devices
+		var port = process.env.PORT || 80;
+		var ip = process.env.HOST || '127.0.0.1'; //Change to specific IP if you need to test on mobile devices
 		
 		http.createServer(function (req, res) {
 			var path = url.parse(req.url).pathname;
@@ -61,7 +63,7 @@ var t = {
 		});
 		console.log(`Server running on http://${ip}:${port}/`);
 		
-		open('http://' + ip + ':' + port + '/');
+		//open('http://' + ip + ':' + port + '/');
 	},
 	checkShell: function(req, res, next){
 		
@@ -100,31 +102,69 @@ var t = {
 		res.end(finalHTML);	
 	},
 	EAS_fif: function(req, res, next){
-		var html = `<!DOCTYPE html><html><head><meta charset="UTF-8"/><title>EAS_fif</title><script type="text/javascript" src="http://eas4.emediate.eu/EAS_tag.1.0.js"></script></head><body style="margin:0px; border:0px; padding:0px;"><script type="text/javascript">      var inDapIF=true;      document.write('<scr'+'ipt type="text/javascript" src="'+window.frameElement.EAS_src+'"></scr'+'ipt>');    </script></body></html>`
+		var html = `<!DOCTYPE html><html><head><meta charset="UTF-8"/><title>EAS_fif</title><script type="text/javascript" src="http://eas4.emediate.eu/EAS_tag.1.0.js"></script></head><body style="margin:0px; border:0px; padding:0px;"><script type="text/javascript">      
+		var inDapIF=true;      
+		document.write('<scr'+'ipt type="text/javascript" src="'+window.frameElement.EAS_src+'"></scr'+'ipt>');    </script></body></html>`
 		res.statuCode = 200;
 		res.setHeader("Content-Type", "text/html; charset=utf-8");
 		res.end(html);
 	},
 	welcome: function(req, res, next){
-		var html = `<h1>White Album sites with shell enabled</h1><br><h2>With banners:</h2><ul>`;		
+		var html = `<h1>White Album sites with shell enabled</h1><br>`;
+
+		html += `<table border="1" ><tr><th>Site name</th><th>With banners</th><th>Without banners</th></tr><tr>`;
+
 		for(var s = 0; s < whitealbum.sites.length; s++){
 			
-			html += `<li>${whitealbum.sites[s].name} -`;
+			html += `<td>${whitealbum.sites[s].name}</td><td>`;
 			for(var l = 0; l < whitealbum.sites[s].languages.length; l++){
-				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/false">${whitealbum.sites[s].languages[l]}</a>&nbsp;`
+				if (whitealbum.sites[s].languages[l] == "DK") {
+				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/false"><img 
+				src="http://trapp.whitealbum.dk/images/flags/denmark-s.png" style="width:20px;border:0;" hspace="5" align="top"></a>`
+				}
+				else if (whitealbum.sites[s].languages[l] == "NO") {
+				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/false"><img 
+				src="http://trapp.whitealbum.dk/images/flags/norway-s.png" style="width:20px;border:0;" hspace="5" align="top"></a>`
+				}
+				else if (whitealbum.sites[s].languages[l] == "FI") {
+				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/false"><img 
+				src="http://trapp.whitealbum.dk/images/flags/finland-s.png" style="width:20px;border:0px solid black;" hspace="5" align="top"></a>`
+				}
+				else if (whitealbum.sites[s].languages[l] == "SE") {
+				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/false"><img 
+				src="http://trapp.whitealbum.dk/images/flags/sweden-s.png" style="width:20px;border:0;" hspace="5" align="top"></a>`
+				}
+				else if (whitealbum.sites[s].languages[l] == "NL") {
+				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/false"><img 
+				src="http://trapp.whitealbum.dk/images/flags/netherlands-s.png" style="width:20px;border:0;" hspace="5" align="top"></a>`
+				}
 			}
-			html += `</li>`
-		}
-		html += `</ul><br><h2>Without banners:</h2>`
-		for(var s = 0; s < whitealbum.sites.length; s++){
-			
-			html += `<li>${whitealbum.sites[s].name} -`;
+			html += `</td><td>`;
+	
 			for(var l = 0; l < whitealbum.sites[s].languages.length; l++){
-				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/true">${whitealbum.sites[s].languages[l]}</a>&nbsp;`
+				if (whitealbum.sites[s].languages[l] == "DK") {
+				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/true"><img 
+				src="http://trapp.whitealbum.dk/images/flags/denmark-s.png" style="width:20px;border:0;" hspace="5" align="top"></a>`
+				}
+				else if (whitealbum.sites[s].languages[l] == "NO") {
+				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/true"><img 
+				src="http://trapp.whitealbum.dk/images/flags/norway-s.png" style="width:20px;border:0;" hspace="5" align="top"></a>`
+				}
+				else if (whitealbum.sites[s].languages[l] == "FI") {
+				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/true"><img 
+				src="http://trapp.whitealbum.dk/images/flags/finland-s.png" style="width:20px;border:0px solid black;" hspace="5" align="top"></a>`
+				}
+				else if (whitealbum.sites[s].languages[l] == "SE") {
+				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/true"><img 
+				src="http://trapp.whitealbum.dk/images/flags/sweden-s.png" style="width:20px;border:0;" hspace="5" align="top"></a>`
+				}
+				else if (whitealbum.sites[s].languages[l] == "NL") {
+				html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/true"><img 
+				src="http://trapp.whitealbum.dk/images/flags/netherlands-s.png" style="width:20px;border:0;" hspace="5" align="top"></a>`
+				}
 			}
-			html += `</li>`
+			html += `</td></tr>`;
 		}
-		html += `</ul>`
 		res.statuCode = 200;
 		res.setHeader("Content-Type", "text/html; charset=utf-8");
 		res.end(html);
