@@ -8,28 +8,45 @@
   js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>-->
-	<div class="container">
-		<ul class="nav nav-tabs">
-			<li class="active"><a data-toggle="tab" href="#wg">Widget groups</a></li>
-			<li><a data-toggle="tab" href="#widgets">Widgets</a></li>
-			<li><a data-toggle="tab" href="#styles">Styles</a></li>
-			<li><a data-toggle="tab" href="#article">Article</a></li>
-			<li><a data-toggle="tab" href="#gallery">Gallery</a></li>
+<div class="container">
+	<ul class="nav navbar-nav gutter-reset">
+		<li class="active"><a data-toggle="tab" href="#wg" title="Widget Groups">Widget groups</a></li>
+		<li><a data-toggle="tab" href="#widgets" title="Widgets">Widgets</a></li>
+		<li><a data-toggle="tab" href="#styles" title="Styles">Styles</a></li>
+		<li><a data-toggle="tab" href="#article" title="Article">Article</a></li>
+		<li><a data-toggle="tab" href="#gallery">Gallery</a></li>
 			<!--<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Gallery<span class="caret"></span></a>
-				<ul class="dropdown-menu">
+				<ul class="dropdown-menu navbar-subnav">
 					<li><a data-toggle="tab" href="#">Horizontal</a></li>
 					<li><a data-toggle="tab" href="#">Horizontal 1</a></li>
 					<li><a data-toggle="tab" href="#vertical">Vertical</a></li> 
 				</ul>
 			</li>-->
-			<li><a data-toggle="tab" href="#rest">Bootstrap</a></li>
+			<!--<li class="dropdown">
+				<a class="caret-before col-xs-10" href="#" title="Livsstil">Livsstil<span class="caret"></span></a>
+				<a href="#" class="dropdown-toggle caret-after col-xs-2 text-center" data-toggle="dropdown">
+					
+				</a>
+				<ul class="dropdown-menu navbar-subnav">
+					<li>
+						<a data-transition-link="true" href="http://woman.dk/dit-liv" title="Dit liv">Dit liv</a>
+					</li>
+					<li>
+						<a data-transition-link="true" href="http://woman.dk/horoskoper/dagens-horoskop" title="Dagens horoskop">Dagens horoskop</a>
+					</li>
+					<li>
+						<a data-transition-link="true" href="http://woman.dk/sund" title="Sundhed">Sundhed</a>
+					</li>
+				</ul>
+			</li>-->
+			<li><a data-toggle="tab" href="#rest" title="Bootstrap">Bootstrap</a></li>
 		</ul>
 	</div>
 
 	<div class="tab-content">
 
-		<!-- *****WIDGET GROUPS AND WIDGETS***** -->
+		<!-- *****WIDGET GROUPS***** -->
 		<div id="wg" class="tab-pane fade in active">
 			<div class="page-header">
 				<h1>Widget groups:</h1>
@@ -60,10 +77,12 @@
 
 			<h2>wg-editorial stick-to-next</h2>
 			<div class= "widget wg-editorial stick-to-next">
+				<h3>Title of first editorial</h3>
 				<p>This is an editorial widget group that sticks to...</p>
 			</div>
 
 			<div class="widget wg-editorial">
+				<h3>Title of second editorial</h3>
 				<p>... the next editorial widget group.</p>
 			</div>
 		</div>
@@ -72,6 +91,7 @@
 		<div id="widgets" class="tab-pane fade">
 			<h1>Widgets</h1>
 
+			<!-- Rotator -->
 			<h3>Editorial - rotator</h3>
 			<div class="widget wg-editorial"><div class="row">
 				<div class="col-sm-12">
@@ -197,7 +217,7 @@
 			</div></div>
 
 			<br>
-
+			<!-- Newsletter, article, list -->
 			<h3>Themebox - newsletter, article, list</h3>
 			<div class="container">
 				<div class="widget-title row">
@@ -325,6 +345,7 @@
 
 				<br>
 
+				<!-- Newsletter, article, list -->
 				<h3>Editorial - newsletter, article, list</h3>
 				<div class="container">
 					<div class="widget-title row">
@@ -450,6 +471,80 @@
 						</div>
 					</div>
 				</div>
+
+				<br>
+
+
+				<!-- Big with two small-->
+				<h3>Editorial - large article and two small - advertorial</h3>
+				<div class="widget wg-editorial"><div class="row">
+					<div class="col-sm-8">
+						<div class="standard mobile-rows">
+							<article class="article-item full-width">
+								<a class="full-width inline-block" data-transition-link="true" href="#" title="Konkurrence: Vis os, hvordan du fortolker det mørke efterårslook">
+									<div class="relative">
+										<div class="content-label-widget">
+											<div class="content-label">
+												Annonce
+											</div>
+										</div>
+										<img alt="" class="block full-width aspect-tv imgix-fluid" data-src="http://bonnier.imgix.net/frbcwomanny-E3x-7IwbIM_AtVlylo1G4Q.jpg?auto=format&amp;rect=0%2C0%2C960%2C665" src="http://bonnier.imgix.net/frbcwomanny-E3x-7IwbIM_AtVlylo1G4Q.jpg?auto=format&amp;rect=0%2C0%2C960%2C665" title="" />
+									</div>
+
+									<header class="article-description">
+										<h2 class="h1 gutter-vertical-reset">
+											Neque porro quisquam est!
+											<i class="fa fa-caret-right bp-hide link-arrow"></i>
+										</h2>
+										<p class="text">
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+										</p>
+									</header>
+								</a>  
+							</article>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="col-sm-4">
+						<div class="standard mobile-rows">
+							<article class="article-item full-width">
+								<a class="full-width inline-block" data-transition-link="true" href="#" title="“Skal jeg kæmpe videre eller give slip?“">
+									<div class="relative">
+										<div class="content-label-widget"></div>
+										<img alt="" class="block full-width aspect-tv imgix-fluid" data-src="http://bonnier.imgix.net/fire-DoZZKiXQG-doz_5fkez2ag.jpg?auto=format&amp;rect=0%2C2%2C3466%2C2399" src="http://bonnier.imgix.net/fire-DoZZKiXQG-doz_5fkez2ag.jpg?auto=format&amp;rect=0%2C2%2C3466%2C2399" title="" />
+									</div>
+									<header class="article-description">
+										<h2 class="h1 gutter-vertical-reset">
+											“But I must explain to you how all this mistaken idea...“
+											<i class="fa fa-caret-right bp-hide link-arrow"></i>
+										</h2>
+									</header>
+								</a>  
+							</article>
+						</div>
+						<div class="standard mobile-rows">
+							<article class="article-item full-width">
+								<a class="full-width inline-block" data-transition-link="true" href="#" title="Kom til åbningsfest i Frb.C - de giver chokolader med præmielodder">
+									<div class="relative">
+										<div class="content-label-widget">
+											<div class="content-label">
+												Annonce
+											</div>
+										</div>
+										<img alt="" class="block full-width aspect-tv imgix-fluid" data-src="http://bonnier.imgix.net/2015/3/13/113356644/frdig-jpg?auto=format&amp;rect=0%2C0%2C960%2C665" src="http://bonnier.imgix.net/2015/3/13/113356644/frdig-jpg?auto=format&amp;rect=0%2C0%2C960%2C665" title="" />
+									</div>
+									<header class="article-description">
+										<h2 class="h1 gutter-vertical-reset">
+											Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+											<i class="fa fa-caret-right bp-hide link-arrow"></i>
+										</h2>
+									</header>
+								</a>  
+							</article>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div></div>
 			</div>
 
 			<!-- *****STYLES***** -->	
