@@ -1,3 +1,17 @@
+## installation instructions
+```
+git clone git@github.com:BenjaminMedia/wa-shell-node.git
+cd wa-shell-node
+npm install
+echo '{' >> whitealbum/token.json
+echo '  "basic": ""' >> whitealbum/token.json
+echo '}' << whitealbum/token.json
+#change the basic token
+cd whitealbum
+node shell
+```
+
+
 # API-tools
 
 For installation of required node modules, run
@@ -12,9 +26,9 @@ For installation of required node modules, run
 You can add additional commands for the drupal api tool:
 
 	USAGE \drupal\node run.js [OPTION] ... arg1 arg2...
-	The following options are supported:                       
+	The following options are supported:
 		-l, --list                    Lists all available sites
-		-t, --types <ARG1>            List available content types for a specific site   
+		-t, --types <ARG1>            List available content types for a specific site
 		-c, --clear                   Removes any existing logfiles
 		-s, --scan <ARG1>...<ARGN>    Accepts multiple arguments:
 			<ARG1>: ALL for all sites, or specific by shortname ex. NAT.
@@ -31,7 +45,7 @@ If any missing taxonomy is found, it will be logged to a CSV file within a (new,
 
 	cd whitealbum
 	node shell.js
-	
+
 When you see the server is runnig from console - simply visit your browser on http://127.0.0.1/ and click a site you want to test.
 A browser window should open, making it easy for you to continue.
 
@@ -40,7 +54,7 @@ A browser window should open, making it easy for you to continue.
 It should contain a single value
 
 	{
-		"basic": "Basic ..." 
+		"basic": "Basic ..."
 	}
 
 It should contain the Base64 encryption of the combined token and secret key - this is required in order to use the shell test script.
