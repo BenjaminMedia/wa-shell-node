@@ -2,6 +2,12 @@
 	"endpoints": ["external_headers", "categories", "tags","oauth/token/info","/oauth/token","users","users/current"],
 	"sites": [
 		{
+			"name": "localhost",
+			"shortname": "STY",
+			"languages": ["NO"],
+			"domains": ["localhost:3000"]
+		},
+		{
 			"name": "M!",
 			"shortname": "MMM",
 			"languages": ["DK"],
