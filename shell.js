@@ -89,7 +89,7 @@ var t = {
 			ResponseJSON.html.body.header +
 			demoHTML +
 			ResponseJSON.html.body.footer +
-			//'<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>' +
+			'<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>' +
 			'</body>' +
 			ResponseJSON.html.end_tag;
 
@@ -200,8 +200,7 @@ var t = {
 			method: 'GET',
 			headers: { "Authorization": token.basic },
 			qs: {
-				"without_ads": banner ,
-				current_site: "54"
+				"without_ads": banner
 			},
         json: true
     };
