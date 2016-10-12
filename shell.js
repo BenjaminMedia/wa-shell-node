@@ -192,7 +192,7 @@ var t = {
 		}
 	},
 	apiRequest: function(siteID,languageID,res,banner,callback){
-		var apiUrl = 'http://staging.' + whitealbum.sites[siteID].domains[languageID] + '/api/v3/external_headers';
+		var apiUrl = 'http://' + whitealbum.sites[siteID].domains[languageID] + '/api/v3/external_headers';
 			console.log(apiUrl);
 
 		var options = {

@@ -5,79 +5,73 @@
 			"name": "M!",
 			"shortname": "MMM",
 			"languages": ["DK"],
-			"domains": ["mmm.dk"]
+			"domains": ["staging.mmm.dk"]
 		},
 		{
 			"name": "Woman",
 			"shortname": "WOM",
 			"languages": ["DK"],
-			"domains": ["woman.dk"]
+			"domains": ["staging.woman.dk"]
 		},
 		{
 			"name": "Stella",
 			"shortname": "STE",
 			"languages": ["NO"],
-			"domains": ["stellamagasinet.no"]
+			"domains": ["staging.stellamagasinet.no"]
 		},
 		{
 			"name": "Stylista",
 			"shortname": "STY",
 			"languages": ["DK"],
-			"domains": ["stylista.dk"]
+			"domains": ["staging.stylista.dk"]
 		},
 		{
 			"name": "Bolig Pluss",
 			"shortname": "BOP",
 			"languages": ["NO"],
-			"domains": ["boligpluss.no"]
+			"domains": ["staging.boligpluss.no"]
 		},
 		{
 			"name": "Bilmagasinet",
 			"shortname": "BIL",
 			"languages": ["DK"],
-			"domains": ["bilmagasinet.dk"]
+			"domains": ["staging.bilmagasinet.dk"]
 		},
 		{
 			"name": "Bo Bedre",
 			"shortname": "BOB",
 			"languages": ["DK","NO"],
-			"domains": ["bobedre.dk","bo-bedre.no"]
+			"domains": ["staging.bobedre.dk","staging.bo-bedre.no"]
 		},
 		{
 			"name": "Costume",
 			"shortname": "COS",
 			"languages": ["DK","NO"],
-			"domains": ["costume.dk","costume.no"]
+			"domains": ["staging.costume.dk","staging.costume.no"]
 		},
 		{
 			"name": "Tara",
 			"shortname": "TAR",
 			"languages": ["NO"],
-			"domains": ["tara.no"]
+			"domains": ["staging.tara.no"]
 		},
 		{
 			"name": "Boligmagasinet",
 			"shortname": "BOL",
 			"languages": ["DK"],
-			"domains": ["boligmagasinet.dk"]
-		},
-		{
-			"name": "Penge",
-			"shortname": "PEN",
-			"languages": ["DK"],
-			"domains": ["penge.dk"]
+			"domains": ["staging.boligmagasinet.dk"]
 		},
 		{
 			"name": "Historie",
 			"shortname": "HIS",
 			"languages": ["DK","NO","SE","FI","NL"],
-			"domains": ["historienet.dk","historienet.no","varldenshistoria.se","historianet.fi","historianet.nl"]
+			"domains": ["staging.historienet.dk","staging.historienet.no","staging.varldenshistoria.se","staging.historianet.fi","staging.historianet.nl"]
 		},
 		{
 			"name": "I Form",
 			"shortname": "IFO",
 			"languages": ["DK","NO","SE","FI"],
-			"domains": ["iform.dk","iform.nu","iform.se","kuntoplus.fi"]
+			"domains": ["staging.iform.dk","staging.iform.nu","staging.iform.se","staging.kuntoplus.fi"]
 		},
 		{
 			"name": "Komputer for alle - Staging",
