@@ -58,8 +58,7 @@ var t = {
 			var match = router.match(path);
 			match.fn(req, res, match);
 		}).listen({
-			host: ip,
-			port: port
+			port: process.env.HOST
 		});
 		console.log(`Server running on http://${ip}:${port}/`);
 
