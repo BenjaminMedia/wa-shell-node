@@ -3,6 +3,9 @@
   "version": "0.0.3",
   "description": "white album shell test",
   "main": "shell.js",
+  "scripts": {
+      "start": "node shell"
+  },
   "dependencies": {
     "open": "0.0.5",
     "request": "2.67.0",
