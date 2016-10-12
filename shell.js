@@ -115,7 +115,7 @@ var t = {
 
 			html += `<td>${whitealbum.sites[s].name}</td><td>`;
 			for(var l = 0; l < whitealbum.sites[s].languages.length; l++){
-                html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/false?bcm_debug_information=true"><img
+                html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/false?bcm_debug_information=true&google_console=1"><img
 				src="http://trapp.whitealbum.dk/images/flags/`;
 				if (whitealbum.sites[s].languages[l] == "DK") {
 				    html += "denmark-s.png";
@@ -138,7 +138,7 @@ var t = {
 			html += `</td><td>`;
 
 			for(var l = 0; l < whitealbum.sites[s].languages.length; l++){
-                html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/true?bcm_debug_information=true"><img
+                html += `<a href="/shell/${whitealbum.sites[s].shortname.toLowerCase()}/${whitealbum.sites[s].languages[l].toLowerCase()}/true?bcm_debug_information=true&google_console=1"><img
 				src="http://trapp.whitealbum.dk/images/flags/`;
 				if (whitealbum.sites[s].languages[l] == "DK") {
                     html += "denmark-s.png";
