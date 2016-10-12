@@ -1,8 +1,8 @@
 {
   "name": "api-tools",
-  "version": "0.0.1",
-  "description": "Tools to make my life a little easier",
-  "main": "whitealbum/shell.js",
+  "version": "0.0.3",
+  "description": "white album shell test",
+  "main": "shell.js",
   "dependencies": {
     "open": "0.0.5",
     "request": "2.67.0",
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/biozork/API-tools.git"
+    "url": "git+https://github.com/BenjaminMedia/wa-shell-node.git"
   },
   "author": "Lars Emil Christensen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/biozork/API-tools/issues"
+    "url": "https://github.com/BenjaminMedia/wa-shell-node/issues"
   },
-  "homepage": "https://github.com/biozork/API-tools#readme"
+  "homepage": "https://github.com/BenjaminMedia/wa-shell-node#readme"
 }

@@ -80,5 +80,4 @@ $RECYCLE.BIN/
 
 logs/*
 node_modules
-whitealbum/token.json
-whitealbum/cache/*
+cache/*
