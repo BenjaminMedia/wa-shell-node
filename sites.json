@@ -22,8 +22,8 @@
 		{
 			"name": "Stylista",
 			"shortname": "STY",
-			"languages": ["DK"],
-			"domains": ["staging.stylista.dk"]
+			"languages": ["DK","NO"],
+			"domains": ["staging.stylista.dk", "staging.stylista.no"]
 		},
 		{
 			"name": "Bolig Pluss",
